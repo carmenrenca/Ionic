@@ -30,7 +30,9 @@ peliId= null;
     this.peliId=this.route.snapshot.params['id'];
   
   }
-
+  close(){
+    this.nav.navigateForward('/');
+  }
  async savePelis(peliId){
    const loading= await this.loading.create({
      message: 'Saving....'

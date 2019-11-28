@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tus Favoritos</ion-title>
+    <ion-button slot="start" (click)="close()" >
+      <ion-icon name="close" fill="clear" (click)="exitUser()" ></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item-sliding *ngFor="let pelis of pelisFAV" >
+   
+        <ion-item lines="inset" button [routerLink]="['/info-pelis', pelis.id]">
+
+            <ion-img class="img" src={{pelis.img}}></ion-img>
+  
+        <ion-label>
+          <h2><b>{{pelis.Titulo}}</b></h2>
+          <h3>Genero: {{pelis.Genero}}</h3>
+          <h3>Director: {{pelis.Director}}</h3>
+          <h3>Duración: {{pelis.Duracion}}</h3>
+          <h3>Extreno: {{pelis.Estreno}}</h3> 
+          <h3>Descripción: {{pelis.Descripcion}}</h3> 
+          
+      </ion-label>
+        </ion-item>
+         
+    </ion-item-sliding>
+  
+    
+  </ion-card>
+
+</ion-content>

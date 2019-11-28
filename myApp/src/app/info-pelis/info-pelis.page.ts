@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController} from "@ionic/angular";
-import { NavController,LoadingController  } from "@ionic/angular";
+import { NavController } from "@ionic/angular";
 import {PeliculasService, pelis} from '../services/peliculas.service';
 import { ActivatedRoute} from '@angular/router';
 
@@ -23,14 +23,14 @@ export class InfoPelisPage implements OnInit {
     img:''
       }
       peliId=null;
-  constructor(private route: ActivatedRoute, private nav: NavController, private peliservice: PeliculasService, private loading: LoadingController) { }
+  constructor(private route: ActivatedRoute, private nav: NavController, private peliservice: PeliculasService) { }
  
  
   ngOnInit() {
-    console.log("entrraa sin id")
+   
     this.peliId = this.route.snapshot.params['id'];
     if (this.peliId){
-      console.log("entrraacon id")
+     
       this.loadTodo();
     }
    /// ionViewWillLeave(){
@@ -45,36 +45,53 @@ export class InfoPelisPage implements OnInit {
     
   }
   async loadTodo(){
-    const loading = await this.loading.create({
-      message: 'Loading....'
-    });
-    await loading.present();
-
-    this.peliservice.getTodo(this.peliId).subscribe(peli => {
-      loading.dismiss();;
+   console.log(this.peliId);
+this.peliservice.getTodo(this.peliId).subscribe(peli => {
+       
       this.peli = peli;
+  
     });
   }
 
+  close(){
+    this.nav.navigateForward('home');
+  }
+
+
+
+  async guardatfav(){
+  console.log(this.peliId)
+  if(this.peliId){
+   
+    this.peliservice.AddFavPelicula(this.peli, this.peliId).then(()=>{
+
+    })
+  }
+}
+
   async savePelis(peliId){
-   const loading= await this.loading.create({
-      message: 'Saving....'
-    });
-    await loading.present();
+
     if(this.peli.id){
       //update
       this.peliservice.updatePelicula(this.peli, this.peli.id).then(()=>{
-     loading.dismiss();
-        this.nav.navigateForward('/');
+    
+        this.nav.navigateForward('home');
       })
  
     }else{
       //add new
+
  
       this.peliservice.addPelicula(this.peli).then(()=>{
-       loading.dismiss();
-       this.nav.navigateForward('/');
+  
+       this.nav.navigateForward('home');
        });}
   }
 
+  async RemovePeli() {
+  
+    this.peliservice.remove(this.peliId );
+ 
+    this.nav.navigateForward('home');
+  }
 }

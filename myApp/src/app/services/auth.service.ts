@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import{User} from '../shared/user.class';
+
 @Injectable({
   providedIn: 'root'
 })

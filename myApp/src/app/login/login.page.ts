@@ -17,7 +17,7 @@ user: User = new User();
     const user = await this.service.onLogin(this.user);
     if(user){
       console.log("El usuario se ha logueado correctamente");
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('home');
     }
   }
 }

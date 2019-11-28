@@ -1,25 +1,25 @@
 <ion-header>
 
   <ion-toolbar color="tertiary">
-    <ion-button slot="start" (click)="closeModal()" >
+    <ion-button slot="start" (click)="close()" >
       <ion-icon name="close" fill="clear" ></ion-icon>
     </ion-button>
-    <ion-title>{{Titulo}}
+    <ion-title>{{peli.Titulo}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list lines="full">
-  <ion-item *ngIf="peli">
+  <ion-item  *ngIf="peli" >
     <ion-label position="stacked">Título <ion-text color="danger">*</ion-text>
     </ion-label>
-    <ion-input required type="text" placeholder="Titulo"  oninput="handleFirstNameValue(event)"></ion-input>
+    <ion-input required type="text" placeholder="Titulo" [(ngModel)]="peli.Titulo"></ion-input>
   </ion-item>
 
   <ion-item *ngIf="peli">
     <ion-label  >Género</ion-label>
-    <ion-select placeholder="Genero" multiple="true">
+    <ion-select placeholder="Genero" [(ngModel)]="peli.Genero" multiple="true">
       <ion-select-option value="accion" selected>Acción</ion-select-option>
       <ion-select-option value="aventuras">Aventura</ion-select-option>
       <ion-select-option value="drama" >Drama</ion-select-option>
@@ -34,20 +34,20 @@
   </ion-item>
   <ion-item *ngIf="peli">
     <ion-label position="floating">Estreno</ion-label>
-    <ion-input type="text" placeholder="Estreno" ></ion-input>
+    <ion-input type="text" placeholder="Estreno" [(ngModel)]="peli.Estreno" ></ion-input>
   </ion-item>
   <ion-item  *ngIf="peli">
     <ion-label position="stacked">Director <ion-text color="danger">*</ion-text>
     </ion-label>
-    <ion-input required type="text" placeholder="Director"></ion-input>
+    <ion-input required type="text" placeholder="Director" [(ngModel)]="peli.Director"></ion-input>
   </ion-item >
   <ion-item  *ngIf="peli">
     <ion-label position="floating">Duración</ion-label>
-    <ion-input type="text" placeholder="Duracion" ></ion-input>
+    <ion-input type="text" placeholder="Duracion" [(ngModel)]="peli.Duracion" ></ion-input>
   </ion-item>
   <ion-item *ngIf="peli">
       <ion-label  >Calificación</ion-label>
-      <ion-select placeholder="Calificacion"  multiple="true">
+      <ion-select placeholder="Calificacion" [(ngModel)]="peli.Calificacion" multiple="true">
         <ion-select-option value="Mayor18" selected>Mayores de 18</ion-select-option>
         <ion-select-option value="familia">Para toda la familia</ion-select-option>
      
@@ -56,16 +56,15 @@
     </ion-item>
   <ion-item  *ngIf="peli">
     <ion-label position="floating" >Description</ion-label>
-    <ion-textarea placeholder="Descripcion" ></ion-textarea>
+    <ion-textarea placeholder="Descripcion"  [(ngModel)]="peli.Descripcion" ></ion-textarea>
   </ion-item>
 
-<ion-item *ngIf="peli">
-    <form name="subida-imagenes" type="POST" enctype="multipart/formdata" >
-      <input placeholder="img"  type="file" name="imagen" />
-    </form>
-</ion-item>
+
+
+
+<ion-button expand="block" (click)="savePelis()">Save</ion-button>
+<ion-button color="danger" (click)="guardatfav()">Añadir a FAV</ion-button>
+<ion-button color="danger" (click)="RemovePeli(peli.id)">Eliminar</ion-button>
 
 </ion-list>
-<ion-button expand="block" (click)="savePelis()">Añadir Película</ion-button>
-
 </ion-content>

@@ -4,6 +4,8 @@ import {ModalController} from "@ionic/angular";
 import{InfoPelisPage} from '../info-pelis/info-pelis.page';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
+import { NavController } from "@ionic/angular";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -13,13 +15,30 @@ export class HomePage implements OnInit {
 
   public pelisRooms :any=[];
   peliId:string;
-  constructor(private route:ActivatedRoute,public peliservice:PeliculasService, private modal: ModalController, private router: Router) { }
+  constructor( private nav: NavController,private route:ActivatedRoute,public peliservice:PeliculasService, private modal: ModalController, private router: Router) { }
 
   ngOnInit() {
-    this.peliservice.getpeliculasRooms().subscribe(pelis=>{
+   
+      this.peliservice.getpeliculasRooms().subscribe(pelis=>{
         this.pelisRooms = pelis
         this.peliId=this.route.snapshot.params['id'];
     })
+  
+   
+  }
+
+  exitUser(){
+    this.nav.navigateForward('/');
+
+  }
+  favorito(){
+    this.nav.navigateForward('/favoritos');
+  }
+
+  ionViewWillEnter() {
+    this.peliservice.getpeliculasRooms().subscribe(pelis=>{
+      this.pelisRooms = pelis
+      this.peliId=this.route.snapshot.params['id']; })
   }
 
   openPelis(pelis){

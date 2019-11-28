@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   {
     path: 'login',
@@ -31,6 +28,10 @@ const routes: Routes = [
   {
     path: 'info-pelis',
     loadChildren: () => import('./info-pelis/info-pelis.module').then( m => m.InfoPelisPageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./favoritos/favoritos.module').then( m => m.FavoritosPageModule)
   }
 ];
 @NgModule({
