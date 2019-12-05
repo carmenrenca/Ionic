@@ -5,7 +5,9 @@ import{InfoPelisPage} from '../info-pelis/info-pelis.page';
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
 import { NavController } from "@ionic/angular";
-
+import { Subscription } from 'rxjs';
+import{AuthService} from '../services/auth.service';
+import {AngularFireAuth} from '@angular/fire/auth';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -15,7 +17,9 @@ export class HomePage implements OnInit {
 
   public pelisRooms :any=[];
   peliId:string;
-  constructor( private nav: NavController,private route:ActivatedRoute,public peliservice:PeliculasService, private modal: ModalController, private router: Router) { }
+  private subcripcion: Subscription;
+  constructor( private nav: NavController, private afAuth:AngularFireAuth,private authSvc:AuthService, 
+    private route:ActivatedRoute,public peliservice:PeliculasService, private modal: ModalController, private router: Router) { }
 
   ngOnInit() {
    
@@ -23,15 +27,19 @@ export class HomePage implements OnInit {
         this.pelisRooms = pelis
         this.peliId=this.route.snapshot.params['id'];
     })
-  
+
    
   }
 
   exitUser(){
-    this.nav.navigateForward('/');
+console.log("salir")
+console.log('Logout');
+this.afAuth.auth.signOut();
+this.router.navigateByUrl('/login');
 
   }
   favorito(){
+    
     this.nav.navigateForward('/favoritos');
   }
 

@@ -1,85 +1,32 @@
 <ion-header>
-  <ion-toolbar>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/css/ionic.bundle.css"/>
+  <ion-toolbar color="primary">
     <ion-title>Inicio</ion-title>
-    <ion-button  (click)="favorito()">
-      <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
-    </ion-button>
-    <ion-button (click)="exitUser()">
-      <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
-    </ion-button>
+
+    <div class="botones">
+
+        <ion-button  (click)="favorito()">
+            <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+          </ion-button>
+          <ion-button (click)="exitUser()">
+            <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
+          </ion-button>
+    </div>
+  
   </ion-toolbar>
 
 
 </ion-header>
-<ion-menu side="start" menuId="first">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  
-  <ion-menu side="start" menuId="custom" class="my-custom-menu">
-    <ion-header>
-      <ion-toolbar color="tertiary">
-        <ion-title>Custom Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  
-  <ion-menu side="end" type="push">
-    <ion-header>
-      <ion-toolbar color="danger">
-        <ion-title>End Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  
+
+
   <ion-router-outlet main></ion-router-outlet>
 <ion-content>
-  <ion-card>
-      <ion-icon slot="start">
 
-          <img src="../../assets/frouzen.jpg"/>
-        </ion-icon>
-    <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-  </ion-card>
-  
  
   
   <ion-card>
@@ -89,7 +36,7 @@
 
             <ion-img class="img" src={{pelis.img}}></ion-img>
   
-        <ion-label>
+        <ion-label class="descripcion">
           <h2><b>{{pelis.Titulo}}</b></h2>
           <h3>Genero: {{pelis.Genero}}</h3>
           <h3>Director: {{pelis.Director}}</h3>
@@ -109,4 +56,6 @@
       <ion-icon class="add" ios="ios-add-circle" md="md-add-circle"></ion-icon>
 
     </ion-fab-button>
+
+    
 </ion-content>

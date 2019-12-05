@@ -57,12 +57,15 @@
       <ion-textarea placeholder="Descripcion" [(ngModel)]="peli.Descripcion"></ion-textarea>
     </ion-item>
  
-  <ion-item *ngIf="peli">
-      <form name="subida-imagenes" type="POST" enctype="multipart/formdata" >
-        <input placeholder="img" [(ngModel)]="peli.img" type="file" name="imagen" />
-      </form>
-  </ion-item>
 
+  <ion-item *ngIf="peli">
+      <ion-label position="floating">Estreno</ion-label>
+      <ion-input type="text" placeholder="img" [(ngModel)]="peli.img"></ion-input>
+    </ion-item>
+    <ion-item  *ngIf="peli">
+        <ion-label position="floating">Imagen</ion-label>
+        <ion-input type="text" placeholder="Duracion" [(ngModel)]="peli.img"></ion-input>
+      </ion-item>
 </ion-list>
   <ion-button expand="block" (click)="savePelis()">Añadir Película</ion-button>
 

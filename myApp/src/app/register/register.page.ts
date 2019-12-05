@@ -17,11 +17,10 @@ user:User = new User();
   }
 
   async onRegister(){
-    const user= await this.authSvc.onRegistre(this.user);
-    if(user){
+    const user= await this.authSvc.onRegister(this.user).then(res=>{
       console.log("El usuario se ha creado");
       this.router.navigateByUrl('/');
-      
-    } 
+    }).catch(err=>alert('No cumple con la condición'));
+  
   }
 }

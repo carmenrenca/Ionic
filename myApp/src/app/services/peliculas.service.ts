@@ -5,6 +5,7 @@ import {PeliInterfaz} from '../../models/peli.interface';
 import { Observable } from 'rxjs';
 import{AuthService} from '../services/auth.service'
 import {AngularFireAuth} from '@angular/fire/auth';
+import {LoginPage} from '../login/login.page';
 export interface pelis {
   id?:string,
   Titulo:string,
@@ -31,7 +32,8 @@ export class PeliculasService {
   private pelisUserCollection: AngularFirestoreCollection<PeliInterfaz>;
   private pelisuser: Observable<PeliInterfaz[]>;
 
-  constructor(private db:AngularFirestore,private afAuth: AngularFireAuth) {
+  constructor(private db:AngularFirestore,private afAuth: AngularFireAuth, l:AuthService) {
+  
     this.pelisCollection = db.collection<PeliInterfaz>('peliculas');
     this.pelis = this.pelisCollection.snapshotChanges().pipe(
       map(actions => {
@@ -42,7 +44,7 @@ export class PeliculasService {
         });
       })
     );
-
+console.log("uid"+afAuth.auth.currentUser.uid)
     this.pelisFavCollection = db.collection('favoritos').doc(afAuth.auth.currentUser.uid).collection<PeliInterfaz>('peliculas');
     this.pelisfav = this.pelisFavCollection.snapshotChanges().pipe(
       map(actions => {
@@ -70,6 +72,7 @@ export class PeliculasService {
   }
 
   getFavoritos(){
+    console.log("uid"+this.afAuth.auth.currentUser.uid)
     return this.pelisfav;
   }
 
@@ -103,6 +106,11 @@ return this.db.collection('peliculas').doc(id).update(peli);
    return this.pelisCollection.doc(id).delete();
  }
 
+
+ removefav(id:string){
+  console.log(id);
+  return this.pelisFavCollection.doc(id).delete();
+}
  getTodo(id: string){
   return this.pelisCollection.doc<PeliInterfaz>(id).valueChanges();
 }

@@ -13,11 +13,20 @@ user: User = new User();
 
   ngOnInit() {
   }
+
+  
   async onLogin(){
-    const user = await this.service.onLogin(this.user);
-    if(user){
-      console.log("El usuario se ha logueado correctamente");
-      this.router.navigateByUrl('home');
-    }
+    const user = await this.service.onLogin(this.user).then(res=>{
+  
+        console.log("El usuario se ha logueado correctamente");
+        this.router.navigateByUrl('home');
+      
+    }  ).catch(err=>alert('Datos incorrectos'));
+
+  }
+
+  ionViewWillEnter() {
+    
+
   }
 }

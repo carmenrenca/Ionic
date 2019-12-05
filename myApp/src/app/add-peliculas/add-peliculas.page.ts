@@ -34,14 +34,12 @@ peliId= null;
     this.nav.navigateForward('/');
   }
  async savePelis(peliId){
-   const loading= await this.loading.create({
-     message: 'Saving....'
-   });
-   await loading.present();
+  console.log("ENTRAAAS");
+console.log(peliId+"id");
    if(this.peliId){
      //update
      this.peliservice.updatePelicula(this.peli, this.peliId).then(()=>{
-       loading.dismiss();
+
        this.nav.navigateForward('/');
      })
 
@@ -49,7 +47,7 @@ peliId= null;
      //add new
 
      this.peliservice.addPelicula(this.peli).then(()=>{
-      loading.dismiss();
+
       this.nav.navigateForward('/');
       });}
  }

@@ -70,10 +70,11 @@ this.peliservice.getTodo(this.peliId).subscribe(peli => {
 }
 
   async savePelis(peliId){
+    this.peliId = this.route.snapshot.params['id'];
 
-    if(this.peli.id){
+    if(this.peliId){
       //update
-      this.peliservice.updatePelicula(this.peli, this.peli.id).then(()=>{
+      this.peliservice.updatePelicula(this.peli,this.peliId).then(()=>{
     
         this.nav.navigateForward('home');
       })
