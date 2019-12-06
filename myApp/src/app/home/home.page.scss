@@ -27,6 +27,12 @@
     max-width: 60%;
     margin: 36px 0;
   }
+  .flotante {
+    display:scroll;
+        position:fixed;
+        bottom:50px;
+        right:0px;
+}
   .descripcion{
     margin-left : 20px;
   }

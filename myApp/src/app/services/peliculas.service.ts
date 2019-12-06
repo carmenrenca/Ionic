@@ -44,7 +44,7 @@ export class PeliculasService {
         });
       })
     );
-console.log("uid"+afAuth.auth.currentUser.uid)
+console.log("uid"+afAuth.auth.currentUser.uid+"UIIIDDD")
     this.pelisFavCollection = db.collection('favoritos').doc(afAuth.auth.currentUser.uid).collection<PeliInterfaz>('peliculas');
     this.pelisfav = this.pelisFavCollection.snapshotChanges().pipe(
       map(actions => {
@@ -59,7 +59,20 @@ console.log("uid"+afAuth.auth.currentUser.uid)
    
    }
 
-  
+ conexionuid(){
+
+  console.log("uid"+this.afAuth.auth.currentUser.uid+"UIIIDDD")
+  this.pelisFavCollection = this.db.collection('favoritos').doc(this.afAuth.auth.currentUser.uid).collection<PeliInterfaz>('peliculas');
+  this.pelisfav = this.pelisFavCollection.snapshotChanges().pipe(
+    map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      });
+    })
+  );
+ }
 
   getpeliculasRooms(){
     return  this.db.collection('peliculas').snapshotChanges().pipe(map(rooms=>{
@@ -72,11 +85,13 @@ console.log("uid"+afAuth.auth.currentUser.uid)
   }
 
   getFavoritos(){
+    this.conexionuid();
     console.log("uid"+this.afAuth.auth.currentUser.uid)
     return this.pelisfav;
   }
 
   getFavorito(id:string){
+    this.conexionuid();
     return this.pelisFavCollection.doc<PeliInterfaz>(id).valueChanges();
   }
 

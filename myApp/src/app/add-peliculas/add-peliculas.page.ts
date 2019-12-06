@@ -31,10 +31,10 @@ peliId= null;
   
   }
   close(){
-    this.nav.navigateForward('/');
+    this.nav.navigateForward('/home');
   }
  async savePelis(peliId){
-  console.log("ENTRAAAS");
+
 console.log(peliId+"id");
    if(this.peliId){
      //update

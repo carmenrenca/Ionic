@@ -18,11 +18,13 @@ export class AuthService {
 
 
  onLogin(user:User){
+  console.log(user.email+"HA ENTRADOO");
   return new Promise((resolve, rejected)=>{
     this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password).then(user=>{
     resolve(user)
-  }).catch(err=>rejected(err) )})
   
+  }).catch(err=>rejected(err) )})
+
   //METODO PARA REGISTRARSE
 
 }

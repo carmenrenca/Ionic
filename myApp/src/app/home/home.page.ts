@@ -35,15 +35,20 @@ export class HomePage implements OnInit {
 console.log("salir")
 console.log('Logout');
 this.afAuth.auth.signOut();
+
 this.router.navigateByUrl('/login');
 
+
   }
+  
   favorito(){
     
     this.nav.navigateForward('/favoritos');
   }
 
   ionViewWillEnter() {
+
+    
     this.peliservice.getpeliculasRooms().subscribe(pelis=>{
       this.pelisRooms = pelis
       this.peliId=this.route.snapshot.params['id']; })

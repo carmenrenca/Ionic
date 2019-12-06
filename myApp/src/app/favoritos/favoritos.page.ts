@@ -29,7 +29,7 @@ export class FavoritosPage implements OnInit {
     this.subcripcion= this.peliservice.getFavoritos().subscribe(pelis=>{
       this.pelisFAV = pelis
       console.log(this.pelisFAV)
-   
+  
   })
   }
   async Removefav(id:string) {
