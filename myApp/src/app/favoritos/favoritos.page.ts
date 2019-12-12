@@ -36,7 +36,6 @@ export class FavoritosPage implements OnInit {
   console.log(id+"remove");
     this.peliservice.removefav(id);
  
-    this.nav.navigateForward('home');
   }
   
   ionViewDidLeave(){

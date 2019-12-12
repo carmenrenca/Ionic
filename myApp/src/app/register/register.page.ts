@@ -19,7 +19,7 @@ user:User = new User();
   async onRegister(){
     const user= await this.authSvc.onRegister(this.user).then(res=>{
       console.log("El usuario se ha creado");
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
     }).catch(err=>alert('No cumple con la condición'));
   
   }
